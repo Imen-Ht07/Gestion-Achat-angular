@@ -1,1 +1,48 @@
-<p>add-edit-fournisseur works!</p>
+<h2 mat-dialog-title>{{ isEditMode ? 'Modifier' : 'Ajouter' }} un fournisseur</h2>
+
+<form [formGroup]="fournisseurForm" (ngSubmit)="onSubmit()" mat-dialog-content>
+  <!-- Champ "Nom" -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="nom" required />
+    <mat-error *ngIf="fournisseurForm.get('nom')?.hasError('required') && fournisseurForm.get('nom')?.touched">
+      Le nom est requis.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Champ "Contact" -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Contact</mat-label>
+    <input matInput formControlName="contact" required />
+    <mat-error *ngIf="fournisseurForm.get('contact')?.hasError('required') && fournisseurForm.get('contact')?.touched">
+      Le contact est requis.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Champ "Qualité de service" -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Qualité de service</mat-label>
+    <input matInput formControlName="qualiteService" />
+  </mat-form-field>
+
+  <!-- Champ "Note" -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Note</mat-label>
+    <div class="star-rating">
+      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+        <i class="fa" [ngClass]="fournisseurForm.get('note')?.value >= star ? 'fa-star' : 'fa-star-o'" (click)="rateFournisseur(star)"></i>
+      </ng-container>
+    </div>
+    <mat-error *ngIf="fournisseurForm.get('note')?.hasError('min') || fournisseurForm.get('note')?.hasError('max')">
+      La note doit être entre 0 et 5.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Actions du formulaire -->
+  <div class="actions" mat-dialog-actions>
+    <button mat-button type="button" (click)="onCancel()">Annuler</button>
+    <button mat-flat-button color="primary" type="submit" [disabled]="fournisseurForm.invalid">
+      {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+    </button>
+  </div>
+</form>

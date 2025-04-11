@@ -1,0 +1,28 @@
+.search-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  table {
+    width: 100%;
+  }
+  .fa-star, .fa-star-o {
+    color: #FFD700; 
+    margin-right: 2px;
+  }
+  
+  .note-number {
+    font-size: 0.85em;
+    color: #888;
+    margin-left: 6px;
+  }
+  
+  .text-warn {
+    color: #FF9800;
+  }
+  
+  .text-muted {
+    color: #ccc;
+  }
+  
