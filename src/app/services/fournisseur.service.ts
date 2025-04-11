@@ -23,4 +23,11 @@ export class FournisseurService {
     updateFournisseur(fournisseur: any): Observable<any> {
       return this.http.put<any>(`${this.apiUrl}/${fournisseur.id}`, fournisseur);
     }
+    deleteFournisseur(id: number): Observable<void> {
+      return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    }
+    // Get fournisseur by ID
+    getFournisseurById(id: number): Observable<Fournisseur> {
+      return this.http.get<Fournisseur>(`${this.apiUrl}/${id}`);
+    }    
 }
